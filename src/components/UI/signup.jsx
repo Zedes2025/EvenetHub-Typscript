@@ -16,7 +16,14 @@ export default function SignUp() {
           className="input  w-auto input-bordered text-base h-12"
           placeholder="Full Name"
         />
-
+        <label className="label text-base font-medium">
+          Choose your username
+        </label>
+        <input
+          type="text"
+          className="input  w-auto input-bordered text-base h-12"
+          placeholder="Username"
+        />
         <label className="label text-base font-medium">Email</label>
         <input
           type="email"
