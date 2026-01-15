@@ -4,7 +4,9 @@ export default function Header() {
   return (
     <div className="navbar bg-blue-100 shadow-sm">
       <div className="navbar-start">
-        <a className=" btn-ghost text-2xl font-bold text-blue-800">EventHub</a>
+        <Link to="/" className=" btn-ghost text-2xl font-bold text-blue-800">
+          EventHub
+        </Link>
       </div>
 
       <div className="navbar-end">
