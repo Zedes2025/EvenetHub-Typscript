@@ -1,7 +1,7 @@
 import { Link, useLoaderData } from "react-router";
 
 export async function loader({ params }) {
-  console.log(params); /*this is an hook, which passes the path from router.jsx "/events/:event" to EventDetailpage , so this path value is assigned in EventPage.jsx with "Link to={`/events/${result.title}`}", so here it brings result.title as an params*/
+  console.log(params);
   const res = await fetch(`http://localhost:3001/api/events/${params.id}`);
   if (!res.ok) throw new Error("Cannot fetch data");
   const data = await res.json();

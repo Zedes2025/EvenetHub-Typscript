@@ -15,6 +15,11 @@ export default function EventPage() {
   if (results.length === 0) {
     return <div className="p-4 text-gray-600">No events found.</div>;
   }
+  const navigate = useNavigate();
+
+  function openEvent(result) {
+    navigate(`/events/${result.id}`);
+  }
 
   return (
     <div className="m-6 pb-6 grid grid-cols-2 lg:grid-cols-3 gap-y-6 justify-center">
@@ -26,10 +31,8 @@ export default function EventPage() {
               <p className="line-clamp-3">{result.description}</p>
             </div>
             <div className="card-title  mt-0 mb-6 m-4 p-4">Location: {result.location} </div>
-            <button>
-              <Link to={`/events/${result.id}`} className="bg-blue-400 px-4 py-2 rounded shadow hover:bg-amber-500 block text-center">
-                View Details
-              </Link>
+            <button onClick={openEvent(result)} className="bg-blue-400 px-4 py-2 rounded shadow hover:bg-amber-500 block text-center">
+              View Details
             </button>
           </div>
         );
