@@ -10,21 +10,21 @@ export default function SignIn() {
         <label className="label text-base font-medium">Email</label>
         <input
           type="email"
-          className="input input-bordered text-base h-12"
+          className="input  w-auto input-bordered text-base h-12"
           placeholder="Email"
         />
 
         <label className="label text-base font-medium mt-2">Password</label>
         <input
           type="password"
-          className="input input-bordered text-base h-12"
+          className="input  w-auto input-bordered text-base h-12"
           placeholder="Password"
         />
 
-        <button className="btn btn-neutral mt-6 text-base h-12">Sign In</button>
+        <button className="btn btn-primary mt-6 text-base h-12">Sign In</button>
         <p className="text-center mt-4">
           Don't have an account?
-          <Link to="/" className="text-blue-600 hover:underline">
+          <Link to="/signup" className="text-blue-600 hover:underline">
             Sign up
           </Link>
         </p>

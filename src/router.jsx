@@ -3,6 +3,7 @@ import AppLayout from "./components/layout/AppLayout";
 import HomePage, { loader as eventLoader } from "./pages/HomePage";
 import ErrorPage from "./pages/ErrorPage";
 import SignIn from "./components/UI/SignIn.jsx";
+import SignUp from "./components/UI/signup.jsx";
 import { useState } from "react";
 const router = createBrowserRouter([
   {
@@ -17,6 +18,10 @@ const router = createBrowserRouter([
       {
         path: "/signin",
         element: <SignIn />,
+      },
+      {
+        path: "/signup",
+        element: <SignUp />,
       },
     ],
   },

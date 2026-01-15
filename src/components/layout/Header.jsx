@@ -16,7 +16,9 @@ export default function Header() {
         </Link>
 
         <button className="btn bg-blue-800 text-base text-gray-300 p-4 m-2">
-          Sign Up
+          <Link to="/signup" className="hover:underline">
+            Sign up
+          </Link>
         </button>
       </div>
     </div>
