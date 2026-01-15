@@ -20,8 +20,8 @@ export default function HomePage() {
   }
   const navigate = useNavigate();
 
-  function openEvent(eventId) {
-    navigate(`/events/${eventId}`);
+  function openEvent(result) {
+    navigate(`/events/${result.id}`);
   }
 
   return (
@@ -43,14 +43,3 @@ export default function HomePage() {
     </div>
   );
 }
-
-// {
-//id
-//   title,
-//description,
-//   date,
-//time
-//   location,
-
-//   onClickCard,
-// }
