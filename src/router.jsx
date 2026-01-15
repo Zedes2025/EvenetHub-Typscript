@@ -5,6 +5,9 @@ import ErrorPage from "./pages/ErrorPage";
 import SignIn from "./components/UI/SignIn.jsx";
 import SignUp from "./components/UI/signup.jsx";
 import { useState } from "react";
+import EventDetailPage, {
+  loader as eventDetailLoader,
+} from "./pages/EventDetailPage";
 const router = createBrowserRouter([
   {
     element: <AppLayout />,
@@ -22,6 +25,11 @@ const router = createBrowserRouter([
       {
         path: "/signup",
         element: <SignUp />,
+      },
+      {
+        path: "/events/:id",
+        element: <EventDetailPage />,
+        loader: eventDetailLoader,
       },
     ],
   },
