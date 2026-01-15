@@ -1,7 +1,8 @@
 import { createBrowserRouter } from "react-router";
-import AppLayout from "./components/layout/AppLayout";
-import HomePage, { loader as eventLoader } from "./pages/HomePage";
-import ErrorPage from "./pages/ErrorPage";
+import AppLayout from "./components/layout/AppLayout.jsx";
+import HomePage, { loader as eventLoader } from "./pages/HomePage.jsx";
+import ErrorPage from "./pages/ErrorPage.jsx";
+import EventDetailPage, { loader as eventDetailLoader } from "./pages/EventDetailPage.jsx";
 
 const router = createBrowserRouter([
   {

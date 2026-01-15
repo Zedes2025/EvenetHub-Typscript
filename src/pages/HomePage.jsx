@@ -1,7 +1,5 @@
-import { useState } from "react";
 import { useLoaderData } from "react-router";
-import EventCard from "../components/UI/EventCard.jsx";
-import { Link, useNavigate } from "react-router";
+import { Link } from "react-router";
 
 export async function loader() {
   const res = await fetch("http://localhost:3001/api/events");
@@ -13,22 +11,28 @@ export async function loader() {
 
 export default function EventPage() {
   const events = useLoaderData();
-
   const results = events.results; /*to access the array within the object*/
   if (results.length === 0) {
     return <div className="p-4 text-gray-600">No events found.</div>;
   }
-  const navigate = useNavigate();
-
-  function openEvent(eventId) {
-    <Link to="/events/${eventId}"></Link>;
-  }
 
   return (
-    <div className=" m-6 pb-6 grid grid-cols-2 lg:grid-cols-3 gap-y-6 justify-center">
+    <div className="m-6 pb-6 grid grid-cols-2 lg:grid-cols-3 gap-y-6 justify-center">
       {results.map((result) => {
-        const [date, timeFull] = result.date.split("T");
-        return <EventCard key={result.id} title={result.title} description={result.description} date={date} time={timeFull.slice(0, 5)} location={result.location} ViewDetailsBtn={() => openEvent(result)} />;
+        return (
+          <div className="card m-10  bg-stone-100 w-96 shadow-sm ">
+            <div className="card-body">
+              <h2 className="card-title text-blue-950"> {result.title}</h2>
+              <p className="line-clamp-3">{result.description}</p>
+            </div>
+            <div className="card-title  mt-0 mb-6 m-4 p-4">Location: {result.location} </div>
+            <button>
+              <Link to={`/events/${result.id}`} className="bg-blue-400 px-4 py-2 rounded shadow hover:bg-amber-500 block text-center">
+                View Details
+              </Link>
+            </button>
+          </div>
+        );
       })}
     </div>
   );
