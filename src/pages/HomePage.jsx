@@ -1,5 +1,4 @@
-import { useLoaderData } from "react-router";
-import { Link } from "react-router";
+import { useLoaderData, useNavigate } from "react-router";
 
 export async function loader() {
   const res = await fetch("http://localhost:3001/api/events");
@@ -18,7 +17,7 @@ export default function EventPage() {
   const navigate = useNavigate();
 
   function openEvent(result) {
-    navigate(`/events/${result.id}`);
+    navigate(`/events/${result}`);
   }
 
   return (
@@ -31,7 +30,7 @@ export default function EventPage() {
               <p className="line-clamp-3">{result.description}</p>
             </div>
             <div className="card-title  mt-0 mb-6 m-4 p-4">Location: {result.location} </div>
-            <button onClick={openEvent(result)} className="bg-blue-400 px-4 py-2 rounded shadow hover:bg-amber-500 block text-center">
+            <button onClick={() => openEvent(result.id)} className="bg-blue-400 px-4 py-2 rounded shadow hover:bg-amber-500 block text-center">
               View Details
             </button>
           </div>

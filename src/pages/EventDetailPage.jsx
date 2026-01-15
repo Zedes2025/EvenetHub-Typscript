@@ -1,8 +1,9 @@
 import { Link, useLoaderData } from "react-router";
 
 export async function loader({ params }) {
-  console.log(params);
-  const res = await fetch(`http://localhost:3001/api/events/${params.id}`);
+  console.log(params); /*check it out , what is params in console to understand the below code*/
+  const eventId = params.id;
+  const res = await fetch(`http://localhost:3001/api/events/${eventId}`);
   if (!res.ok) throw new Error("Cannot fetch data");
   const data = await res.json();
   return data;
