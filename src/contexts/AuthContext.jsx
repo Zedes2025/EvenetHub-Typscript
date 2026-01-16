@@ -3,16 +3,22 @@ const AuthContext = createContext();
 
 export default function AuthProvider({ children }) {
   const [user, setUser] = useState("Guest");
+  const [token, setToken] = useState(null);
+  s;
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const login = (email, password) => {
     setIsAuthenticated(true);
     setUser({ email });
-    setToken("mock-token");
+    setToken("dummy-token");
   };
 
   const logout = () => {
     setIsAuthenticated(false);
     setUser("Guest");
+    setToken(null);
+  };
+  const register = (email, password) => {
+    return true;
   };
 
   return (
@@ -20,8 +26,10 @@ export default function AuthProvider({ children }) {
       value={{
         isAuthenticated,
         user,
+        token,
         login,
         logout,
+        register,
       }}
     >
       {children}
