@@ -1,12 +1,4 @@
-export default function EventCard({
-  id,
-  title,
-  description,
-  date,
-  time,
-  location,
-  ViewDetailsBtn,
-}) {
+export default function EventCard({ id, title, description, date, time, location, ViewDetailsBtn }) {
   return (
     <div className="card m-10  bg-stone-100 w-96 shadow-sm ">
       {/* onClick={onClickCard} */}
