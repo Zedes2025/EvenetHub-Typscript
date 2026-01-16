@@ -47,7 +47,7 @@ export default function EventDetailPage() {
           <div>
             <Link
               to="/"
-              className="bg-stone-400 px-4 py-2 rounded shadow hover:bg-amber-500 block text-center  text-amber-950"
+              className="bg-stone-400 px-4 py-2 rounded shadow hover:bg-blue-500 block text-center  text-amber-950"
             >
               Go Back
             </Link>
