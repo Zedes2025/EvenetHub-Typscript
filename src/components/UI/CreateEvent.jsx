@@ -1,11 +1,8 @@
-import { useState } from "react";
+import useCreateEvent from "../../pages/UseCreateEvent";
 
 export default function CreateEventPage() {
-  const [inputs, setInputs] = useState({ title: "", description: "", date: "", location: "", latitude: "", longitude: "" });
-  const handleChange = (e) => setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-  const submitEvent = (e) => {
-    e.preventDefault();
-  };
+  const { inputs, handleChange, submitEvent } = useCreateEvent();
+
   return (
     <div className="min-h-screen  flex flex-col items-center justify-center">
       <h1 className="md:text-6xl sm:text-2xl font-serif ">Create an Event</h1>

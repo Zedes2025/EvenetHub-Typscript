@@ -7,6 +7,7 @@ export default function SignUp() {
   const navigate = useNavigate();
   const submitRegistration = async (e) => {
     e.preventDefault();
+
     if (credentials.name.length < 2) {
       alert("Name length should be at least 2 characters long");
       return;
@@ -24,7 +25,7 @@ export default function SignUp() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ name: credentials.name, email: credentials.email, password: credentials.password }),
+      body: JSON.stringify({ email: credentials.email, password: credentials.password }),
     });
     if (response.ok) {
       alert("Registration successful!");

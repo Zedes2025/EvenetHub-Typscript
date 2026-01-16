@@ -5,7 +5,7 @@ export default function AuthProvider({ children }) {
   const [user, setUser] = useState("Guest");
   const [token, setToken] = useState(null);
 
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(true);
   const login = (email, password) => {
     setIsAuthenticated(true);
     setUser({ email });
