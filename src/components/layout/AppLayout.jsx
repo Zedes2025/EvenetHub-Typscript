@@ -1,14 +1,17 @@
-import { Outlet } from "react-router";
-import Header from "./Header";
-import Footer from "./Footer";
+import { Outlet, useNavigation } from "react-router";
+import Header from "./Header.jsx";
+import Footer from "./Footer.jsx";
+import AuthProvider from "../../contexts/AuthContext.jsx";
+
 export default function AppLayout() {
+  const navigation = useNavigation();
+  const isLoading = navigation.state === "loading";
   return (
-    <div>
+    <>
       <Header />
+      {isLoading && <div>Loading...</div>}
       <Outlet />
       <Footer />
-    </div>
+    </>
   );
 }
-
-AppLayout;
