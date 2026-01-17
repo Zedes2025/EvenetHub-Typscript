@@ -1,12 +1,4 @@
-export default function EventCard({
-  id,
-  title,
-  description,
-  date,
-  time,
-  location,
-  ViewDetailsBtn,
-}) {
+export default function EventCard({ id, title, description, date, time, location, ViewDetailsBtn }) {
   return (
     <div className="card m-10  bg-stone-100 w-96 shadow-sm ">
       {/* onClick={onClickCard} */}
@@ -18,10 +10,7 @@ export default function EventCard({
       <div className="card-title  mt-6 mb-0 m-4 p-4">Date: {date}</div>
       {/* <div className="card-title  mt-0 mb-0 m-4 p-4">Time: {time}</div> */}
       <div className="card-title  mt-0 mb-6 m-4 p-4">Location: {location} </div>
-      <button
-        onClick={ViewDetailsBtn}
-        className="btn  bg-stone-400 text-amber-950 text-lg"
-      >
+      <button onClick={ViewDetailsBtn} className="btn  bg-stone-400 hover:bg-amber-600 text-amber-950 text-lg">
         View Details
       </button>
     </div>

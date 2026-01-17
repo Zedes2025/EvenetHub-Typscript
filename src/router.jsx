@@ -4,7 +4,7 @@ import HomePage, { loader as eventLoader } from "./pages/HomePage.jsx";
 import ErrorPage from "./pages/ErrorPage.jsx";
 import SignIn from "./components/UI/SignIn.jsx";
 import SignUp from "./pages/SignUp.jsx";
-import CreateEventPage from "./pages/CreateEventPage.jsx";
+import CreateEvent from "./components/UI/CreateEvent.jsx";
 import EventDetailPage, { loader as eventDetailLoader } from "./pages/EventDetailPage.jsx";
 const router = createBrowserRouter([
   {
@@ -31,7 +31,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/create-event",
-        element: <CreateEventPage />,
+        element: <CreateEvent />,
       },
     ],
   },
