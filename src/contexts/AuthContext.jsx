@@ -39,10 +39,6 @@ export default function AuthProvider({ children }) {
     setIsAuthenticated(true);
   };
 
-  const register = (email, password) => {
-    return true;
-  };
-
   return (
     <AuthContext.Provider
       value={{
