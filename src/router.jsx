@@ -5,7 +5,10 @@ import ErrorPage from "./pages/ErrorPage.jsx";
 import SignIn from "./components/UI/SignIn.jsx";
 import SignUp from "./pages/SignUp.jsx";
 import CreateEventPage from "./pages/CreateEventPage.jsx";
-import EventDetailPage, { loader as eventDetailLoader } from "./pages/EventDetailPage.jsx";
+import EventDetailPage, {
+  loader as eventDetailLoader,
+} from "./pages/EventDetailPage.jsx";
+import ProtectedRoute from "./routes/ProtectedRoute.jsx";
 const router = createBrowserRouter([
   {
     element: <AppLayout />,
@@ -31,7 +34,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/create-event",
-        element: <CreateEventPage />,
+        element: (
+          <ProtectedRoute>
+            <CreateEventPage />
+          </ProtectedRoute>
+        ),
       },
     ],
   },
