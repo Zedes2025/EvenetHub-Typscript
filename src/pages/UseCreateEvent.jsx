@@ -1,6 +1,7 @@
 import { useState } from "react";
+import { useNavigate } from "react-router";
 
-export default function useCreateEvent() {
+export default function UseCreateEvent() {
   const [inputs, setInputs] = useState({
     title: "",
     description: "",
@@ -9,14 +10,27 @@ export default function useCreateEvent() {
     latitude: "",
     longitude: "",
   });
-
+  const navigate = useNavigate();
   const handleChange = (e) => {
     setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const submitEvent = (e) => {
+  const submitEvent = async (e) => {
     e.preventDefault();
-    // You can handle the POST request here or return inputs to handle in component
+    const response = await fetch("http://localhost:3001/api/events", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ title: inputs.title, description: inputs.description, date: inputs.date, location: inputs.location, latitude: Number(inputs.latitude), longitude: Number(inputs.longitude) }),
+    });
+    if (response.ok) {
+      alert("Event creation is successful!");
+      navigate("/"); // Redirect the user
+    } else {
+      const errorData = await response.json();
+      alert(errorData.message || "Event creation failed");
+    }
     console.log("Event submitted:", inputs);
   };
 

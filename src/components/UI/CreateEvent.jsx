@@ -1,7 +1,7 @@
-import useCreateEvent from "../../pages/UseCreateEvent";
+import UseCreateEvent from "../../pages/UseCreateEvent.jsx";
 
-export default function CreateEventPage() {
-  const { inputs, handleChange, submitEvent } = useCreateEvent();
+export default function CreateEvent() {
+  const { inputs, handleChange, submitEvent } = UseCreateEvent();
 
   return (
     <div className="min-h-screen  flex flex-col items-center justify-center">
