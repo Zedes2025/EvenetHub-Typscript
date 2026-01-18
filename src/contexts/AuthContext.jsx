@@ -34,12 +34,9 @@ export default function AuthProvider({ children }) {
     }
 
     const data = await res.json(); // { token: "..." }
+    console.log(data);
     localStorage.setItem("token", data.token);
     setIsAuthenticated(true);
-  };
-
-  const register = (email, password) => {
-    return true;
   };
 
   return (

@@ -1,4 +1,5 @@
-import { Link, useLoaderData } from "react-router";
+import { Link, useLoaderData, useNavigate } from "react-router";
+import { useAuth } from "../contexts/AuthContext";
 
 export async function loader({ params }) {
   console.log(params); /*check it out , what is params in console to understand the below code*/
@@ -10,9 +11,26 @@ export async function loader({ params }) {
 }
 
 export default function EventDetailPage() {
+  const { isAuthenticated, token } = useAuth();
   const eventMatch = useLoaderData();
+  const navigate = useNavigate();
   const [dateSplit, timeFull] = eventMatch.date.split("T");
   const time = timeFull.slice(0, 5);
+  const deleteEvent = async (e) => {
+    const id = eventMatch.id;
+    console.log(id);
+    const response = await fetch(`http://localhost:3001/api/events/${id}`, {
+      method: "DELETE",
+      headers: {
+        accept: "*/*",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    if (response.ok) {
+      alert("Event Deletion is successful!");
+      navigate("/");
+    }
+  };
   return (
     <div className="hero bg-neutral-500 h-screen w-screen">
       <div className="hero-content text-center">
@@ -37,10 +55,15 @@ export default function EventDetailPage() {
               <strong>Coordinates:</strong> {eventMatch.latitude}, {eventMatch.longitude}
             </p>
           </div>
-          <div>
+          <div className="flex justify-between">
             <Link to="/" className="bg-stone-400 px-4 py-2 rounded shadow hover:bg-amber-500 block text-center  text-amber-950">
               Go Back
             </Link>
+            {isAuthenticated && (
+              <button onClick={deleteEvent} className="bg-stone-400 px-4 py-2 rounded shadow hover:bg-amber-500 block text-center  text-amber-950">
+                Delete Event
+              </button>
+            )}
           </div>
         </div>
       </div>
