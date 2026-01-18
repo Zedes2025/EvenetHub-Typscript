@@ -7,12 +7,15 @@ export default function AuthProvider({ children }) {
 
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     const savedToken = localStorage.getItem("token");
     if (savedToken) {
       setToken(savedToken);
       setIsAuthenticated(true);
     }
+    setLoading(false);
   }, []);
   const logout = () => {
     setIsAuthenticated(false);
@@ -44,10 +47,10 @@ export default function AuthProvider({ children }) {
       value={{
         isAuthenticated,
         user,
+        loading,
         token,
         login,
         logout,
-        register,
       }}
     >
       {children}
