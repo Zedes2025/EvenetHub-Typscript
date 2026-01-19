@@ -33,7 +33,8 @@ export default function AuthProvider({ children }) {
     });
 
     if (!res.ok) {
-      throw new Error("Invalid email or password");
+      const errorData = await res.json(); // read error message from API
+      throw new Error(errorData.message || "Invalid email or password");
     }
 
     const data = await res.json(); // { token: "..." }
