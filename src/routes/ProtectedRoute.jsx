@@ -9,7 +9,7 @@ export default function ProtectedRoute({ children }) {
   }
 
   if (!isAuthenticated) {
-    return <Navigate to="/signin" replace />;
+    return <Navigate to="/signin" />;
   }
   // console.log("ProtectedRoute", { isAuthenticated, loading });
   return children;
