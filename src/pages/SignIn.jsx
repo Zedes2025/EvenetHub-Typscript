@@ -1,65 +1,35 @@
-import { useNavigate, Link } from "react-router";
-import { useAuth } from "../contexts/AuthContext";
-import { useState } from "react";
+import SignInForm from "../components/UI/SignInForm";
+import { redirect } from "react-router";
 
-export default function SignIn() {
-  const { isAuthenticated, user, token, login } = useAuth();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const navigate = useNavigate();
-  const [error, setError] = useState("");
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+// Pure UI wrapper
+export default function SignIn({ error }) {
+  return <SignInForm error={error} />;
+}
 
-    try {
-      await login(email, password); // asks the context
-      navigate("/"); // UI decision
-    } catch (err) {
-      console.log(err.message); // UI decision
-      setError(err.message);
+// Data-router declarative action
+export async function action({ request }) {
+  const formData = await request.formData();
+  const email = formData.get("email");
+  const password = formData.get("password");
+
+  try {
+    // Call the same login logic as your AuthContext
+    const res = await fetch("http://localhost:3001/api/auth/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, password }),
+    });
+
+    if (!res.ok) {
+      const data = await res.json();
+      throw new Error(data.message || "Invalid email or password");
     }
-  };
 
-  return (
-    <div className=" flex items-center w-full ">
-      <fieldset className="fieldset bg-base-200 border-base-300 items-center rounded-box w-96 border p-6 mx-auto mt-10 mb-20">
-        <legend className="fieldset-legend text-xl justify-center font-semibold pt-12">
-          Sign In
-        </legend>
-
-        <label className="label text-base font-medium">Email</label>
-        <input
-          type="email"
-          className="input  w-auto input-bordered text-base h-12"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-
-        <label className="label text-base font-medium mt-2">Password</label>
-        <input
-          type="password"
-          className="input  w-auto input-bordered text-base h-12"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)} // update state
-        />
-
-        <button
-          className="btn btn-primary mt-6 text-base h-12"
-          onClick={handleSubmit}
-        >
-          Sign In
-        </button>
-
-        {error && <p className="text-red-600 mt-2">{error}</p>}
-        <p className="text-center mt-4">
-          Don't have an account?
-          <Link to="/signup" className="text-blue-600 hover:underline">
-            Sign up
-          </Link>
-        </p>
-      </fieldset>
-    </div>
-  );
+    const data = await res.json();
+    localStorage.setItem("token", data.token); // AuthContext will pick it up on mount
+    return redirect("/"); // declarative redirect
+  } catch (err) {
+    alert(err.message);
+    return null; // stay on the form
+  }
 }
