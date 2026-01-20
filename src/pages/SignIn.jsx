@@ -1,5 +1,5 @@
 import { useNavigate, Link } from "react-router";
-import { useAuth } from "../../contexts/AuthContext";
+import { useAuth } from "../contexts/AuthContext";
 import { useState } from "react";
 
 export default function SignIn() {

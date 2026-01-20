@@ -2,8 +2,8 @@ import { createBrowserRouter } from "react-router";
 import AppLayout from "./components/layout/AppLayout.jsx";
 import HomePage, { loader as eventLoader } from "./pages/HomePage.jsx";
 import ErrorPage from "./pages/ErrorPage.jsx";
-import SignIn from "./components/UI/SignIn.jsx";
-import SignUp from "./pages/SignUp.jsx";
+import SignIn from "./pages/SignIn.jsx";
+import SignUp, { action as signUpAction } from "./pages/SignUp.jsx";
 
 import EventDetailPage, {
   loader as eventDetailLoader,
@@ -31,6 +31,7 @@ const router = createBrowserRouter([
       {
         path: "/signup",
         element: <SignUp />,
+        action: signUpAction,
       },
       {
         path: "/events/:id",
