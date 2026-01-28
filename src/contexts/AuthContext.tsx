@@ -76,6 +76,11 @@ export default function AuthProvider({ children }: AuthProviderProps) {
     </AuthContext.Provider>
   );
 }
-export function useAuth() {
-  return useContext(AuthContext);
+export function useAuth(): AuthContextType {
+  //--- specify return type
+  const context = useContext(AuthContext);
+  if (!context) {
+    throw new Error("useAuth must be used within an AuthProvider");
+  }
+  return context;
 }
