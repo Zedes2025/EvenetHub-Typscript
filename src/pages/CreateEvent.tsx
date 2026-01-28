@@ -4,7 +4,7 @@ import CreateEventForm from "../components/UI/CreateEventForm";
 
 // Pure UI wrapper
 export default function CreateEvent() {
-  return <CreateEventForm />;
+  return <CreateEventForm title="" description="" date="" location="" latitude={0} longitude={0} />;
 }
 
 // ----- Action -----
