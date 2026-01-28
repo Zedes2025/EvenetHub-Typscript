@@ -1,6 +1,13 @@
 import { useLoaderData, Link } from "react-router";
 import EventCard from "../components/UI/EventCard";
 
+type Event = {
+  id: string;
+  title: string;
+  date: string;
+  location: string;
+};
+
 export async function loader() {
   const res = await fetch("http://localhost:3001/api/events");
   if (!res.ok) throw new Error("Cannot fetch data:");
@@ -10,7 +17,7 @@ export async function loader() {
 }
 
 export default function EventPage() {
-  const events = useLoaderData();
+  const events = useLoaderData<{ results: Event[] }>(); //-------------------------Type declaration
   const results = events.results; /*to access the array within the object*/
   if (results.length === 0) {
     return <div className="p-4 text-gray-600">No events found.</div>;
