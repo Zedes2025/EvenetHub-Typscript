@@ -5,8 +5,6 @@ type SignInProps = {
   error?: string;
 };
 
-type ActionData = {};
-
 // Pure UI wrapper
 export default function SignIn({ error }: SignInProps) {
   return <SignInForm error={error} />;
