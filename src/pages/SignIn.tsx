@@ -1,13 +1,19 @@
 import SignInForm from "../components/UI/SignInForm";
 import { redirect } from "react-router";
+import type { ActionFunction } from "react-router";
+type SignInProps = {
+  error?: string;
+};
+
+type ActionData = {};
 
 // Pure UI wrapper
-export default function SignIn({ error }) {
+export default function SignIn({ error }: SignInProps) {
   return <SignInForm error={error} />;
 }
 
 // Data-router declarative action
-export async function action({ request }) {
+export const action: ActionFunction = async ({ request }) => {
   const formData = await request.formData();
   const email = formData.get("email");
   const password = formData.get("password");
@@ -28,8 +34,8 @@ export async function action({ request }) {
     const data = await res.json();
     localStorage.setItem("token", data.token); // AuthContext will pick it up on mount
     return redirect("/"); // declarative redirect
-  } catch (err) {
+  } catch (err: any) {
     alert(err.message);
     return null; // stay on the form
   }
-}
+};
