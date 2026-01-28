@@ -1,10 +1,21 @@
 import { createContext, useContext, useState, useEffect } from "react";
-const AuthContext = createContext();
+
+type AuthContextType = {
+  //--- define context value type
+  isAuthenticated: boolean;
+  user: string;
+  loading: boolean;
+  token: string | null;
+  login: (email: string, password: string) => Promise<void>;
+  logout: () => void;
+};
 
 type AuthProviderProps = {
   //--- define props type
   children: React.ReactNode;
 };
+
+const AuthContext = createContext<AuthContextType | null>(null);
 
 export default function AuthProvider({ children }: AuthProviderProps) {
   //--- specify props type
