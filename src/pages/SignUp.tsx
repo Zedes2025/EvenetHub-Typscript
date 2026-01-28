@@ -1,18 +1,29 @@
 import SignUpForm from "../components/UI/SignUpForm";
 import { redirect } from "react-router";
-
+import type { ActionFunction } from "react-router";
 // Pure UI wrapper
 export default function SignUp() {
   return <SignUpForm />;
 }
 
 // Declarative action for data-router
-export async function action({ request }) {
+export const action: ActionFunction = async ({ request }) => {
   const formData = await request.formData();
   const name = formData.get("name");
   const email = formData.get("email");
   const password = formData.get("password");
   const rpassword = formData.get("rpassword");
+
+  //for type safety
+  if (
+    typeof name !== "string" ||
+    typeof email !== "string" ||
+    typeof password !== "string" ||
+    typeof rpassword !== "string"
+  ) {
+    alert("Invalid form data");
+    return null;
+  }
 
   // validation
   if (name.length < 2) {
@@ -43,4 +54,4 @@ export async function action({ request }) {
 
   alert("Registration successful!");
   return redirect("/signin"); // declarative redirect
-}
+};
