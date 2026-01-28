@@ -1,10 +1,10 @@
 import { createBrowserRouter } from "react-router";
 import AppLayout from "./components/layout/AppLayout.jsx";
-import HomePage, { loader as eventLoader } from "./pages/HomePage.jsx";
+import HomePage, { loader as eventLoader } from "./pages/HomePage.tsx";
 import ErrorPage from "./pages/ErrorPage.jsx";
-import SignIn, { action as signInAction } from "./pages/SignIn.jsx";
+import SignIn, { action as signInAction } from "./pages/SignIn.tsx";
 
-import SignUp, { action as signUpAction } from "./pages/SignUp.jsx";
+import SignUp, { action as signUpAction } from "./pages/SignUp.tsx";
 
 import EventDetailPage, {
   loader as eventDetailLoader,
