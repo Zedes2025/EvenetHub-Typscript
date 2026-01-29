@@ -1,17 +1,35 @@
 // pages/CreateEvent.jsx
 import { Form, redirect } from "react-router";
 import CreateEventForm from "../components/UI/CreateEventForm";
+import type { ActionFunctionArgs } from "react-router";
+
+type EventFormData = {
+  title: string;
+  description: string;
+  date: string;
+  location: string;
+  latitude: number;
+  longitude: number;
+};
 
 // Pure UI wrapper
 export default function CreateEvent() {
-  return <CreateEventForm />;
+  return <CreateEventForm title="" description="" date="" location="" latitude={0} longitude={0} />;
 }
 
 // ----- Action -----
-export async function action({ request }) {
+export async function action({ request }: ActionFunctionArgs) {
   // Get form data
   const formData = await request.formData();
-  const data = Object.fromEntries(formData);
+  // const data: EventFormData = Object.fromEntries(formData);
+  const data: EventFormData = {
+    title: String(formData.get("title") ?? ""),
+    description: String(formData.get("description") ?? ""),
+    date: String(formData.get("date") ?? ""),
+    location: String(formData.get("location") ?? ""),
+    latitude: Number(formData.get("latitude") ?? "0"),
+    longitude: Number(formData.get("longitude") ?? "0"),
+  };
 
   // Get token (from localStorage for simplicity)
   const token = localStorage.getItem("token");

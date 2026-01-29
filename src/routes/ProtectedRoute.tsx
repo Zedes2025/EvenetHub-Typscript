@@ -1,7 +1,12 @@
 import { Navigate } from "react-router";
 import { useAuth } from "../contexts/AuthContext";
+import { ReactNode } from "react";
 
-export default function ProtectedRoute({ children }) {
+type ProtectedRouteProps = {
+  children: ReactNode;
+};
+
+export default function ProtectedRoute({ children }: ProtectedRouteProps) {
   const { isAuthenticated, loading } = useAuth();
 
   if (loading) {
