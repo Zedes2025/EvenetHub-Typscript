@@ -14,7 +14,7 @@ export const action: ActionFunction = async ({ request }) => {
   const password = formData.get("password");
   const rpassword = formData.get("rpassword");
 
-  //for type safety
+  //for type safety-------------------------------------------------------------
   if (
     typeof name !== "string" ||
     typeof email !== "string" ||

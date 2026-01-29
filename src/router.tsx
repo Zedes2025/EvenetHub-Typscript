@@ -1,19 +1,19 @@
 import { createBrowserRouter } from "react-router";
-import AppLayout from "./components/layout/AppLayout.js";
-import HomePage, { loader as eventLoader } from "./pages/HomePage.js";
-import ErrorPage from "./pages/ErrorPage.js";
-import SignIn, { action as signInAction } from "./pages/SignIn.js";
+import AppLayout from "./components/layout/AppLayout.jsx";
+import HomePage, { loader as eventLoader } from "./pages/HomePage";
+import ErrorPage from "./pages/ErrorPage.jsx";
+import SignIn, { action as signInAction } from "./pages/SignIn";
 
-import SignUp, { action as signUpAction } from "./pages/SignUp.js";
+import SignUp, { action as signUpAction } from "./pages/SignUp";
 
 import EventDetailPage, {
   loader as eventDetailLoader,
   action as eventDetailAction,
-} from "./pages/EventDetailPage.js";
+} from "./pages/EventDetailPage.jsx";
 
-import CreateEvent, { action as createAction } from "./pages/CreateEvent.js";
+import CreateEvent, { action as createAction } from "./pages/CreateEvent.jsx";
 
-import ProtectedRoute from "./routes/ProtectedRoute.js";
+import ProtectedRoute from "./routes/ProtectedRoute.jsx";
 
 const router = createBrowserRouter([
   {
