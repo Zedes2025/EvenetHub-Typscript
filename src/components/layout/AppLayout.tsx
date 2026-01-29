@@ -2,9 +2,10 @@ import { Outlet, useNavigation } from "react-router";
 import Header from "./Header";
 import Footer from "./Footer";
 import AuthProvider from "../../contexts/AuthContext";
-export default function AppLayout() {
+import { JSX } from "react";
+export default function AppLayout(): JSX.Element {
   const navigation = useNavigation();
-  const isLoading = navigation.state === "loading";
+  const isLoading: boolean = navigation.state === "loading";
 
   return (
     <AuthProvider>

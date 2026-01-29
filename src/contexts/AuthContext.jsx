@@ -16,7 +16,7 @@ export default function AuthProvider({ children }) {
       setIsAuthenticated(true);
     }
     setLoading(false);
-  }, []);
+  }, [token]);
   const logout = () => {
     setIsAuthenticated(false);
     setUser("Guest");
