@@ -1,8 +1,8 @@
 import { Link, useNavigate } from "react-router";
-import { useAuth } from "../../contexts/AuthContext.jsx";
+import { useAuth } from "../../contexts/AuthContext.js";
 
 export default function Header() {
-  const { isAuthenticated, user, token, login, logout, register } = useAuth();
+  const { isAuthenticated, logout } = useAuth();
   const navigate = useNavigate();
   const handleLogout = () => {
     if (isAuthenticated) {

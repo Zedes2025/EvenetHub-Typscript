@@ -1,9 +1,26 @@
 import { createContext, useContext, useState, useEffect } from "react";
-const AuthContext = createContext();
 
-export default function AuthProvider({ children }) {
+type AuthContextType = {
+  //--- define context value type
+  isAuthenticated: boolean;
+  user: string;
+  loading: boolean;
+  token: string | null;
+  login: (email: string, password: string) => Promise<void>;
+  logout: () => void;
+};
+
+type AuthProviderProps = {
+  //--- define props type
+  children: React.ReactNode;
+};
+
+const AuthContext = createContext<AuthContextType | null>(null);
+
+export default function AuthProvider({ children }: AuthProviderProps) {
+  //--- specify props type
   const [user, setUser] = useState("Guest");
-  const [token, setToken] = useState(null);
+  const [token, setToken] = useState<string | null>(null); //--- specify token can be string or null
 
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
@@ -23,7 +40,8 @@ export default function AuthProvider({ children }) {
     setToken(null);
     localStorage.removeItem("token");
   };
-  const login = async (email, password) => {
+  const login = async (email: string, password: string) => {
+    //--- specify parameter types
     const res = await fetch("http://localhost:3001/api/auth/login", {
       method: "POST",
       headers: {
@@ -58,6 +76,11 @@ export default function AuthProvider({ children }) {
     </AuthContext.Provider>
   );
 }
-export function useAuth() {
-  return useContext(AuthContext);
+export function useAuth(): AuthContextType {
+  //--- specify return type
+  const context = useContext(AuthContext);
+  if (!context) {
+    throw new Error("useAuth must be used within an AuthProvider");
+  }
+  return context;
 }
