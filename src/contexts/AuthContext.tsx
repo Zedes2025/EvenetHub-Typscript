@@ -1,4 +1,5 @@
 import { createContext, useContext, useState, useEffect } from "react";
+import { useLocation } from "react-router";
 
 type AuthContextType = {
   //--- define context value type
@@ -26,14 +27,13 @@ export default function AuthProvider({ children }: AuthProviderProps) {
 
   const [loading, setLoading] = useState(true);
 
+  const location = useLocation(); //  to fix reload issues after typing
   useEffect(() => {
-    const savedToken = localStorage.getItem("token");
-    if (savedToken) {
-      setToken(savedToken);
-      setIsAuthenticated(true);
-    }
-    setLoading(false);
-  }, []);
+    const token = localStorage.getItem("token");
+    setToken(token);
+    setIsAuthenticated(!!token);
+  }, [location.key]); //  to fix reload issues after typing
+
   const logout = () => {
     setIsAuthenticated(false);
     setUser("Guest");
