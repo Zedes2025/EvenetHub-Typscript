@@ -30,8 +30,11 @@ export default function AuthProvider({ children }: AuthProviderProps) {
   const location = useLocation(); //  to fix reload issues after typing
   useEffect(() => {
     const token = localStorage.getItem("token");
-    setToken(token);
-    setIsAuthenticated(!!token);
+    if (token) {
+      setToken(token);
+      setIsAuthenticated(true);
+    }
+    setLoading(false);
   }, [location.key]); //  to fix reload issues after typing
 
   const logout = () => {
@@ -58,6 +61,7 @@ export default function AuthProvider({ children }: AuthProviderProps) {
     const data = await res.json(); // { token: "..." }
     console.log(data);
     localStorage.setItem("token", data.token);
+    setToken(data.token);
     setIsAuthenticated(true);
   };
 
