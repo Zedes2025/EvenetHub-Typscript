@@ -2,11 +2,20 @@
 import { Form, redirect } from "react-router";
 import CreateEventForm from "../components/UI/CreateEventForm";
 import type { ActionFunctionArgs } from "react-router";
-import type { EventFormData } from "../components/types";
+import type { EventFormData } from "../types";
 
 // Pure UI wrapper
 export default function CreateEvent() {
-  return <CreateEventForm title="" description="" date="" location="" latitude={0} longitude={0} />;
+  return (
+    <CreateEventForm
+      title=""
+      description=""
+      date=""
+      location=""
+      latitude={0}
+      longitude={0}
+    />
+  );
 }
 
 // ----- Action -----
