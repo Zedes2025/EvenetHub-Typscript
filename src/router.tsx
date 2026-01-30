@@ -6,10 +6,7 @@ import SignIn, { action as signInAction } from "./pages/SignIn";
 
 import SignUp, { action as signUpAction } from "./pages/SignUp";
 
-import EventDetailPage, {
-  loader as eventDetailLoader,
-  action as eventDetailAction,
-} from "./pages/EventDetailPage";
+import EventDetailPage, { loader as eventDetailLoader, action as eventDetailAction } from "./pages/EventDetailPage";
 
 import CreateEvent, { action as createAction } from "./pages/CreateEvent";
 

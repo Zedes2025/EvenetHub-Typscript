@@ -6,7 +6,7 @@ import { JSX } from "react";
 import AuthProvider from "../../contexts/AuthContext";
 export default function AppLayout(): JSX.Element {
   const navigation = useNavigation();
-  const isLoading = navigation.state === "loading";
+  const isLoading: boolean = navigation.state === "loading";
 
   return (
     <AuthProvider>

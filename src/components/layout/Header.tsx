@@ -1,10 +1,11 @@
 import { Link, useNavigate } from "react-router";
 import { useAuth } from "../../contexts/AuthContext.js";
+import { JSX } from "react";
 
-export default function Header() {
+export default function Header(): JSX.Element {
   const { isAuthenticated, logout } = useAuth();
   const navigate = useNavigate();
-  const handleLogout = () => {
+  const handleLogout = (): void => {
     if (isAuthenticated) {
       logout(); // clears state + localStorage
     } else {
@@ -22,19 +23,13 @@ export default function Header() {
       <div className="navbar-end">
         {isAuthenticated && (
           <button>
-            <Link
-              to="/create-event"
-              className="btn p-4 m-2 text-amber-950 text-base border-b-slate-600 shadow-sm"
-            >
+            <Link to="/create-event" className="btn p-4 m-2 text-amber-950 text-base border-b-slate-600 shadow-sm">
               Create Event
             </Link>
           </button>
         )}
         <button onClick={handleLogout}>
-          <Link
-            to="/signin"
-            className="btn p-4 m-2 text-amber-950 text-base border-b-slate-600 shadow-sm"
-          >
+          <Link to="/signin" className="btn p-4 m-2 text-amber-950 text-base border-b-slate-600 shadow-sm">
             {!isAuthenticated ? "Sign In" : "Sign Out"}
           </Link>
         </button>

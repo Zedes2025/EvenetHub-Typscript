@@ -1,15 +1,8 @@
 import { Form } from "react-router";
+import { EventFormData } from "../types";
 
-type CreateEventFormProps = {
-  title: string;
-  description: string;
-  date: string;
-  location: string;
-  latitude: number;
-  longitude: number;
-};
 // ----- Component -----
-export default function CreateEventForm({ title, description, date, location, latitude, longitude }: CreateEventFormProps) {
+export default function CreateEventForm({ title, description, date, location, latitude, longitude }: EventFormData) {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center">
       <h1 className="md:text-6xl sm:text-2xl font-serif">Create an Event</h1>

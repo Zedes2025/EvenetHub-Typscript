@@ -48,7 +48,7 @@
     "target": "ES2019", // modern JS features like async/await, Map/Set
     "lib": ["DOM", "DOM.Iterable", "ES2019"], // includes Set, Map, WeakMap, Iterable
     "module": "ESNext", // for modern bundlers
-    "moduleResolution": "Node", // resolve node_modules imports
+    "moduleResolution": "bundler", // resolve node_modules imports
     "esModuleInterop": true, // allow default import from CommonJS modules
     "allowJs": true, // allow JS files in TS project
     "checkJs": false, // optional: skip checking JS files

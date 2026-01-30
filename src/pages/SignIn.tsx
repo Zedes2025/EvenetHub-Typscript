@@ -1,9 +1,7 @@
 import SignInForm from "../components/UI/SignInForm";
 import { redirect } from "react-router";
 import type { ActionFunction } from "react-router";
-type SignInProps = {
-  error?: string;
-};
+import type { SignInProps } from "../components/types";
 
 // Pure UI wrapper
 export default function SignIn({ error }: SignInProps) {
