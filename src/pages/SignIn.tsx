@@ -5,8 +5,6 @@ type SignInProps = {
   error?: string;
 };
 
-type ActionData = {};
-
 // Pure UI wrapper
 export default function SignIn({ error }: SignInProps) {
   return <SignInForm error={error} />;
@@ -33,7 +31,7 @@ export const action: ActionFunction = async ({ request }) => {
 
     const data = await res.json();
     localStorage.setItem("token", data.token); // AuthContext will pick it up on mount
-    return redirect("/"); // declarative redirect
+    return redirect("/?auth=success"); // declarative redirect to fix reload issues
   } catch (err: any) {
     alert(err.message);
     return null; // stay on the form
